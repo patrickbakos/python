@@ -1,10 +1,12 @@
 import os
 
+
 def grid_preview(grid):  # mindent felfedo palya
     for i in range(len(grid)):
         for j in range(len(grid[i])):
             print(grid[i][j], end=" ")
         print()
+
 
 def ship_placement(grid, row, column, direction, length):  # hajók lerakása
     if direction == 1:
@@ -16,9 +18,9 @@ def ship_placement(grid, row, column, direction, length):  # hajók lerakása
     grid_preview(grid)
     return length
 
-def out_of_grid(grid, row, column, direction = 0, length = 0):  # ne lehessen palyan kivulre rakni
+
+def out_of_grid(grid, row, column, direction=0, length=0):  # ne lehessen palyan kivulre rakni
     if direction == 1:
-        print("lenggrid:", len(grid))
         print("row:", row)
         print("column:", column)
         if row < 0 or row >= len(grid) or row + length > len(grid) or column < 0 or column >= len(grid):
@@ -27,7 +29,6 @@ def out_of_grid(grid, row, column, direction = 0, length = 0):  # ne lehessen pa
         else:
             all_good = 1
     elif direction == 0:
-        print("lenggrid:", len(grid))
         print("row:", row)
         print("column:", column)
         if row < 0 or row >= len(grid) or column < 0 or column >= len(grid) or column + length > len(grid):
@@ -36,15 +37,16 @@ def out_of_grid(grid, row, column, direction = 0, length = 0):  # ne lehessen pa
         else:
             all_good = 1
     else:
-        print("lenggrid:", len(grid))
         print("row:", row)
         print("column:", column)
         all_good = 0
         print("Direction error! 1 is vertical, 0 is horizontal.")
     return all_good
 
+
 def placement_check(grid, row, column, direction, length):  # mas hajohoz viszonyitva jo-e
     all_good = 1
+
     def ship_check(column_correction1, column_correction2, all_good=1):
         for j in i[column - column_correction1:column + column_correction2]:
                         if grid[grid.index(i)][i.index(j)] == "X":
@@ -82,12 +84,13 @@ def placement_check(grid, row, column, direction, length):  # mas hajohoz viszon
                     all_good = ship_check(1, 2)
     return all_good
 
+
 def ship_generation(player, ships, grid, life):
     for i in range(len(ships)):
         for k in range(ships[i]):
             length = i
             all_good = 0
-            while all_good == 0:         
+            while all_good == 0:
                 print(player, "player:")
                 try:
                     row_ship = int(input("\nRow of ship? \n")) - 1

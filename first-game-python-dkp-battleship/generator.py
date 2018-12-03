@@ -1,7 +1,7 @@
 import copy
 
+
 def pre_data():
-    # ITT KEZDODIK##################################
     print('\nWelcome to DKP Battleship Game!\n')
     row = 0
     while 5 > row or row > 9:
@@ -12,18 +12,19 @@ def pre_data():
         except ValueError:
             print("Please enter a valid parameter!\n")
 
-    life1 = 0  # erteket kell kapniuk, mert kesobb csak +=vel szerepel
+    life1 = 0  # need to assign values for later use
     life2 = 0
     turn = 20
 
-    # hajok kiosztasa. Indexek jelolik a hajok hosszat(length), ertekek pedig a darabszamot
+    # ships are assigned based on the size of the grid.
+    # tuple indexes refer to the length of the ships and the values refer the amount of the ships
     ships5 = (0, 0, 2)
     ships6 = (0, 0, 2, 1)
     ships7 = (0, 0, 2, 2)
     ships8 = (0, 0, 3, 2)
     ships9 = (0, 0, 2, 2, 0, 1)
 
-    # ships praktikus hasznalhatosaga a jovoben
+    # ships for later use in pregame.ship_generation()
     if row == 5:
         ships = ships5
     elif row == 6:
@@ -35,7 +36,7 @@ def pre_data():
     elif row == 9:
         ships = ships9
 
-    # palyak generalasa
+    # creating grids
     grid1 = ["0"] * row
     for i in range(row):
         grid1[i] = ["0"] * row
