@@ -2,7 +2,7 @@ import os
 import pregame
 
 
-def fog_of_war(grid):  # játék közben lathato palya
+def fog_of_war(grid):  # grid view during game
     for i in range(len(grid)):
         for j in range(len(grid[i])):
             if grid[i][j] == "#" or grid[i][j] == "H":
@@ -12,7 +12,7 @@ def fog_of_war(grid):  # játék közben lathato palya
         print()
 
 
-def print_all(life1, life2, grid1, grid2, turn):  # játékkép printelése
+def print_all(life1, life2, grid1, grid2, turn):  # set of things to print during gameplay
     print("\nFirst players life:", life1)
     print("Second players life:", life2)
     print("Turns left:", turn)
@@ -23,7 +23,7 @@ def print_all(life1, life2, grid1, grid2, turn):  # játékkép printelése
     print()
 
 
-def shooting_hits(grid, row, column):  # lövés
+def shooting_hits(grid, row, column):  # result of shooting (hit or miss)
     hit = 0
     if grid[row][column] == "0":
         grid[row][column] = "#"
@@ -33,7 +33,7 @@ def shooting_hits(grid, row, column):  # lövés
     return hit
 
 
-def shooting(player_name, grid, life):
+def shooting(player_name, grid, life):  # shooting during gameplay
     all_good = 0
     while all_good == 0:
         print("\n{} shoots:\n".format(player_name))
@@ -47,5 +47,5 @@ def shooting(player_name, grid, life):
         if all_good == 0:
             continue
         life = life - shooting_hits(grid, row_ship, column_ship)
-        os.system('cls')
+        os.system('clear')
         return life

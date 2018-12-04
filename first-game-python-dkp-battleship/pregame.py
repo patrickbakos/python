@@ -1,7 +1,7 @@
 import os
 
 
-def grid_preview(grid):  # mindent felfedo palya
+def grid_preview(grid):  # grid view with all seeing eye
     for i in range(len(grid)):
         for j in range(len(grid[i])):
             print(grid[i][j], end=" ")
@@ -19,7 +19,7 @@ def ship_placement(grid, row, column, direction, length):  # hajók lerakása
     return length
 
 
-def out_of_grid(grid, row, column, direction=0, length=0):  # ne lehessen palyan kivulre rakni
+def out_of_grid(grid, row, column, direction=0, length=0):  # checking if the shot or ship is out of grid
     if direction == 1:
         print("row:", row)
         print("column:", column)
@@ -44,7 +44,7 @@ def out_of_grid(grid, row, column, direction=0, length=0):  # ne lehessen palyan
     return all_good
 
 
-def placement_check(grid, row, column, direction, length):  # mas hajohoz viszonyitva jo-e
+def placement_check(grid, row, column, direction, length):  # checking if ship placement is valid
     all_good = 1
 
     def ship_check(column_correction1, column_correction2, all_good=1):
@@ -54,7 +54,7 @@ def placement_check(grid, row, column, direction, length):  # mas hajohoz viszon
                             all_good = 0
         return all_good
 
-    # vizszintes
+    # horizontal
     if direction == 0:
         if row == 0:
             for i in grid[row:row + 2]:
@@ -68,7 +68,7 @@ def placement_check(grid, row, column, direction, length):  # mas hajohoz viszon
                     all_good = ship_check(0, length + 1)
                 elif all_good == 1:  # column > 0
                     all_good = ship_check(1, length + 1)
-    # fuggoleges
+    # vertical
     if direction == 1:
         if row == 0:
             for i in grid[row:row + length + 1]:
@@ -106,5 +106,5 @@ def ship_generation(player, ships, grid, life):
                 if all_good == 0:
                     continue
                 life += ship_placement(grid, row_ship, column_ship, direction, length)
-    os.system('cls')
+    os.system('clear')
     return (grid, life)
